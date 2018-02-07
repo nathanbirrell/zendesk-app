@@ -7,8 +7,10 @@
     "url": "https://github.com/zendesk/app_scaffold.git"
   },
   "scripts": {
+    "start": "nf start",
     "build": "webpack -p",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "test": "karma start"
   },
   "license": "Apache-2.0",
   "author": "Zendesk",
