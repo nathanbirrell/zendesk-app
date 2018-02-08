@@ -1,6 +1,10 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { client } from './index';
 import View from 'view';
-import Storage from 'storage'
+import Storage from 'storage';
+
+import SearchArticles from './components/SearchArticles';
 
 const MAX_HEIGHT = 375;
 
@@ -15,18 +19,23 @@ class TicketSidebar {
       client.invoke('resize', { height: newHeight, width: '100%' });
     }});
 
-    this.getCurrentUser().then(this.renderMain.bind(this));
+    // this.getCurrentUser().then(this.renderMain.bind(this));
 
-    this.view.switchTo('loading');
+    this.view.switchTo('main');
+
+    ReactDOM.render(
+      <SearchArticles />,
+      document.getElementById('app-container')
+    );
   }
 
-  getCurrentUser() {
-    return client.request({ url: '/api/v2/users/me.json' });
-  }
+  // getCurrentUser() {
+  //   return client.request({ url: '/api/v2/users/me.json' });
+  // }
 
-  renderMain(data) {
-    this.view.switchTo('main', data.user);
-  }
+  // renderMain(data) {
+  //   this.view.switchTo('main', data.user);
+  // }
 }
 
 export default TicketSidebar;

@@ -1,1 +1,2 @@
-<p>{{t "hello" name=name}}</p>
+<!-- Core React app container -->
+<div id="app-container"></div>
