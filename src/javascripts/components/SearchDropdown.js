@@ -88,7 +88,7 @@ class SearchDropdown extends React.PureComponent {
             onChange={this.props.onChange}
             onFocus={this.showDropdown}
             onBlur={this.hideDropdown}
-            placeholder="Try: 'test' or 'sample'"
+            placeholder="Try: 'how' or 'zendesk'"
           />
         </div>
 

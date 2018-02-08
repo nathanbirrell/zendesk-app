@@ -17,11 +17,12 @@ class SearchArticlesContainer extends React.Component {
     this.state = {
       isLoading: false,
       results: null,
-      selectedItem: null
+      selectedArticle: null
     }
 
     this.handleQueryChange = this.handleQueryChange.bind(this);
-    this.handleItemClick = this.handleItemClick.bind(this);
+    this.handleArticleClick = this.handleArticleClick.bind(this);
+    this.handlePostArticleAsComment = this.handlePostArticleAsComment.bind(this);
     this.searchAsync = this.searchAsync.bind(this);
   }
 
@@ -35,6 +36,8 @@ class SearchArticlesContainer extends React.Component {
    */
   async searchAsync(query) {
     const results = await ArticlesService.search(query);
+
+    console.log(results);
 
     this.setState({
       results,
@@ -52,23 +55,31 @@ class SearchArticlesContainer extends React.Component {
     this.searchAsync(query);
   }
 
-  handleItemClick(selectedItem) {
-    console.log(`clicked item ${selectedItem.subject}`, selectedItem);
-
-    this.setState({ selectedItem })
+  handleArticleClick(selectedArticle) {
+    this.setState({ selectedArticle })
   }
 
-  renderSelectedItem() {
-    if (!this.state.selectedItem) { return null; }
-    const { title, snippet } = this.state.selectedItem;
+  handlePostArticleAsComment(e) {
+    e.preventDefault();
+    const comment = `${this.state.selectedArticle.title} - ${this.state.selectedArticle.url}`;
+    console.log(comment);
+  }
+
+  renderSelectedArticle() {
+    if (!this.state.selectedArticle) { return null; }
+    const { title, snippet } = this.state.selectedArticle;
 
     return (
       <div className="search-articles__selected-item c-callout">
         <p className="c-callout__paragraph u-zeta u-semibold">Selected article:</p>
         <p className="c-callout__title">{title}</p>
         <p className="c-callout__paragraph">{snippet}</p>
-        <button class="c-btn c-btn--medium c-btn--pill c-btn--primary u-mt-sm">
-          Post As <strong class="u-semibold">Comment</strong>
+
+        <button
+          onClick={this.handlePostArticleAsComment}
+          className="c-btn c-btn--medium c-btn--pill c-btn--primary u-mt-sm"
+        >
+          Post As <strong className="u-semibold">Comment</strong>
         </button>
       </div>
     )
@@ -82,12 +93,12 @@ class SearchArticlesContainer extends React.Component {
           label="Search for a KB article:"
           value={this.state.query}
           onChange={this.handleQueryChange}
-          handleItemClick={this.handleItemClick}
+          handleItemClick={this.handleArticleClick}
           results={this.state.results}
           isLoading={this.state.isLoading}
         />
 
-        {this.renderSelectedItem()}
+        {this.renderSelectedArticle()}
       </form>
     );
   }

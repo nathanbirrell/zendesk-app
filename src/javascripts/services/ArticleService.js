@@ -9,7 +9,6 @@ export default class ArticlesService {
   static async search(query) {
     try {
       const response = await client.request({ url: `${API_BASE_URL}/help_center/articles/search.json?query=${query}` });
-      console.log(response);
       return response.results;
     } catch (error) {
       console.error(error);
