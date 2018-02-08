@@ -3,6 +3,7 @@ import React from 'react';
 import { debounce } from 'lodash';
 
 import ArticlesService from '../services/ArticleService';
+import TicketService from '../services/TicketService';
 
 import SearchDropdown from '../components/SearchDropdown';
 
@@ -15,6 +16,7 @@ class SearchArticlesContainer extends React.Component {
     super(props);
 
     this.state = {
+      query: '',
       isLoading: false,
       results: null,
       selectedArticle: null
@@ -45,6 +47,20 @@ class SearchArticlesContainer extends React.Component {
     });
   }
 
+  async postCommentAsync(comment) {
+    await TicketService.comment(comment);
+
+    this.reset();
+  }
+
+  reset() {
+    this.setState({
+      results: null,
+      query: '',
+      selectedArticle: null
+    });
+  }
+
   handleQueryChange(event) {
     const query = event.target.value;
     this.setState({
@@ -63,6 +79,7 @@ class SearchArticlesContainer extends React.Component {
     e.preventDefault();
     const comment = `${this.state.selectedArticle.title} - ${this.state.selectedArticle.url}`;
     console.log(comment);
+    this.postCommentAsync(comment);
   }
 
   renderSelectedArticle() {
