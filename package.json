@@ -1,10 +1,10 @@
 {
-  "name": "app_scaffold",
+  "name": "zendesk-app",
   "version": "0.0.1",
-  "description": "A scaffold for developers to build ZAF v2 apps",
+  "description": "Nathan's code challenge for Zendesk.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zendesk/app_scaffold.git"
+    "url": "https://github.com/nathanbirrell/zendesk-app.git"
   },
   "scripts": {
     "start": "nf start",
@@ -19,9 +19,6 @@
     "app",
     "framework"
   ],
-  "bugs": {
-    "url": "https://github.com/zendesk/app_scaffold/issues"
-  },
   "devDependencies": {
     "babel-core": "^6.5.2",
     "babel-eslint": "^5.0.0",
