@@ -4,3 +4,7 @@
 body {
   margin: 0;
 }
+
+.c-menu.is-open {
+  z-index: 1;
+}
