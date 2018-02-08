@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import View from 'view';
 import Storage from 'storage';
 
-import SearchArticles from './components/SearchArticles';
+import SearchArticlesContainer from './containers/SearchArticlesContainer';
 
 class TicketSidebar {
   constructor(data) {
@@ -18,7 +18,7 @@ class TicketSidebar {
     this.view.switchTo('main');
 
     ReactDOM.render(
-      <SearchArticles />,
+      <SearchArticlesContainer />,
       document.getElementById('app-container')
     );
   }
