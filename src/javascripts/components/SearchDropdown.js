@@ -12,12 +12,34 @@ class SearchDropdown extends React.PureComponent {
       showDropdown: false
     }
 
-    this.toggleShowDropdown = this.toggleShowDropdown.bind(this);
+    this.showDropdown = this.showDropdown.bind(this);
+    this.hideDropdown = this.hideDropdown.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
 
-  toggleShowDropdown(showDropdown = !this.state.showDropdown) {
-    console.log('showdd');
-    this.setState({ showDropdown });
+  componentDidMount() {
+    document.addEventListener('click', this.handleOutsideClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleOutsideClick);
+  }
+
+  handleOutsideClick(e) {
+    console.log('handleOutsideClick');
+    // ignore clicks on the component itself
+    if (this.node.contains(e.target)) { return; }
+    this.hideDropdown();
+  }
+
+  showDropdown() {
+    console.log('show');
+    this.setState({ showDropdown: true });
+  }
+
+  hideDropdown() {
+    console.log('hide');
+    this.setState({ showDropdown: false });
   }
 
   renderResultItems() {
@@ -46,7 +68,8 @@ class SearchDropdown extends React.PureComponent {
     const classes = Classnames({
       'c-menu': true,
       'c-menu--down': true,
-      'is-open': this.state.showDropdown
+      'is-open': this.state.showDropdown,
+      'is-hidden': !this.state.showDropdown
     });
 
     return (
@@ -58,7 +81,7 @@ class SearchDropdown extends React.PureComponent {
 
   render() {
     return (
-      <fieldset id={this.props.id} className="u-mb-lg u-position-relative">
+      <fieldset id={this.props.id} className="u-mb-lg u-position-relative" ref={(nodeRef => { this.node = nodeRef; })}>
         <div className="c-txt">
           <Label htmlFor={this.props.id}>{this.props.label}</Label>
           <input
@@ -66,8 +89,8 @@ class SearchDropdown extends React.PureComponent {
             type="text"
             value={this.props.value}
             onChange={this.props.onChange}
-            onFocus={this.toggleShowDropdown}
-            onBlur={this.toggleShowDropdown}
+            onFocus={this.showDropdown}
+            onBlur={this.hideDropdown}
             placeholder="Try: 'test' or 'sample'"
           />
         </div>
