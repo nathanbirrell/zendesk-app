@@ -3,7 +3,8 @@
   "extends": "eslint:recommended",
   "rules": {
     "no-console": 0,
-    "no-debugger": 0
+    "no-debugger": 0,
+    "react/jsx-uses-react": 0
   },
   "env": {
     "browser": true,
@@ -21,5 +22,8 @@
     "Handlebars": true,
     "_": true,
     "moment": true
-  }
+  },
+  "plugins": [
+    "react"
+  ]
 }
