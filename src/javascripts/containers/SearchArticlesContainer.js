@@ -53,9 +53,11 @@ class SearchArticlesContainer extends React.Component {
     return (
       <form className="search-articles c-txt">
         <SearchDropdown
+          id="search-articles__dropdown"
           label="Search for an article:"
           value={this.state.query}
           onChange={this.handleQueryChange}
+          handleItemClick={(item) => {console.log(`clicked item ${item.label}`);}}
           results={this.state.results}
           isLoading={this.state.isLoading}
         />

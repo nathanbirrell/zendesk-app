@@ -8,7 +8,14 @@ import Spinner from './Spinner';
 class SearchDropdown extends React.PureComponent {
   renderResultItems() {
     return this.props.results.map((result) => (
-      <li className="c-menu__item" key={result.id}>{result.subject}</li>
+      <li
+        key={result.id}
+        id={result.id}
+        className="c-menu__item"
+        onClick={this.props.handleItemClick}
+      >
+        {result.subject}
+      </li>
     ));
   }
 
@@ -36,9 +43,9 @@ class SearchDropdown extends React.PureComponent {
 
   render() {
     return (
-      <fieldset className="u-mb-lg u-position-relative">
+      <fieldset id={this.props.id} className="u-mb-lg u-position-relative">
         <div className="c-txt">
-          <Label>{this.props.label}</Label>
+          <Label htmlFor={this.props.id}>{this.props.label}</Label>
           <input
             className="c-txt__input c-txt__input--select"
             type="text"
@@ -56,7 +63,9 @@ class SearchDropdown extends React.PureComponent {
 
 SearchDropdown.propTypes = {
   value: PropTypes.string,
+  id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  handleItemClick: PropTypes.func.isRequired,
   results: PropTypes.array.isRequired,
   label: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired

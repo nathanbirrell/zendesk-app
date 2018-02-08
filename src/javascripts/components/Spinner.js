@@ -3,7 +3,7 @@ import React from 'react';
 // TODO: add a pretty spinner
 
 export default () => (
-  <span>
+  <span className="spinner">
     Loading...
   </span>
 );
