@@ -1,9 +1,8 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 
 import ArticlesService from '../services/ArticleService';
-import TicketService from '../services/TicketService';
 
 import SearchDropdown from '../components/SearchDropdown';
 
@@ -48,7 +47,7 @@ class SearchArticlesContainer extends React.Component {
   }
 
   async postCommentAsync(comment) {
-    await TicketService.comment(comment);
+    await this.props.CommentService.comment(comment);
 
     this.reset();
   }
@@ -119,6 +118,10 @@ class SearchArticlesContainer extends React.Component {
       </form>
     );
   }
+}
+
+SearchArticlesContainer.propTypes = {
+  CommentService: PropTypes.object
 }
 
 export default SearchArticlesContainer;

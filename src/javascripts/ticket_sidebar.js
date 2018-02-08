@@ -5,6 +5,7 @@ import Storage from 'storage';
 
 import { client } from './index';
 
+import TicketService from './services/TicketService';
 import SearchArticlesContainer from './containers/SearchArticlesContainer';
 
 const IFRAME_HEIGHT = 490;
@@ -22,7 +23,9 @@ class TicketSidebar {
     this.view.switchTo('main');
 
     ReactDOM.render(
-      <SearchArticlesContainer />,
+      <SearchArticlesContainer
+        CommentService={TicketService}
+      />,
       document.getElementById('app-container')
     );
   }
