@@ -1,12 +1,45 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import UserService from '../services/UserService';
+
+import Spinner from './Spinner';
 
 class SearchArticles extends React.Component {
-  render() {
-    // TODO
-    console.log('SearchArticles render')
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: true,
+      user: null
+    }
+  }
+
+  componentDidMount() {
+    this.fetchUserAsync();
+  }
+
+  async fetchUserAsync() {
+    const user = await UserService.getCurrentUser();
+
+    this.setState({
+      user,
+      isLoading: false
+    });
+  }
+
+  renderLoading() {
     return (
-      <span>SearchArticles TODO</span>
+      <Spinner />
+    );
+  }
+
+  render() {
+    if (this.state.isLoading) {
+      return this.renderLoading();
+    }
+
+    return (
+      <span>Hello {this.state.user.name}</span>
     );
   }
 }
