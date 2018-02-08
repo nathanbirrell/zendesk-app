@@ -7,7 +7,7 @@ import { client } from './index';
 
 import SearchArticlesContainer from './containers/SearchArticlesContainer';
 
-const IFRAME_HEIGHT = 420;
+const IFRAME_HEIGHT = 490;
 
 class TicketSidebar {
   constructor(data) {

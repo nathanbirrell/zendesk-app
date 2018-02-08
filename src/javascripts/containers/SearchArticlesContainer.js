@@ -16,7 +16,8 @@ class SearchArticlesContainer extends React.Component {
 
     this.state = {
       isLoading: false,
-      results: null
+      results: null,
+      selectedItem: null
     }
 
     this.handleQueryChange = this.handleQueryChange.bind(this);
@@ -51,8 +52,26 @@ class SearchArticlesContainer extends React.Component {
     this.searchAsync(query);
   }
 
-  handleItemClick(item) {
-    console.log(`clicked item ${item.subject}`, item);
+  handleItemClick(selectedItem) {
+    console.log(`clicked item ${selectedItem.subject}`, selectedItem);
+
+    this.setState({ selectedItem })
+  }
+
+  renderSelectedItem() {
+    if (!this.state.selectedItem) { return null; }
+    const { subject, description } = this.state.selectedItem;
+
+    return (
+      <div className="search-articles__selected-item c-callout">
+        <p className="c-callout__paragraph u-zeta u-semibold">Selected article:</p>
+        <p className="c-callout__title">{subject}</p>
+        <p className="c-callout__paragraph">{description}</p>
+        <button class="c-btn c-btn--medium c-btn--pill c-btn--primary u-mt-sm">
+          Post As <strong class="u-semibold">Comment</strong>
+        </button>
+      </div>
+    )
   }
 
   render() {
@@ -67,6 +86,8 @@ class SearchArticlesContainer extends React.Component {
           results={this.state.results}
           isLoading={this.state.isLoading}
         />
+
+        {this.renderSelectedItem()}
       </form>
     );
   }

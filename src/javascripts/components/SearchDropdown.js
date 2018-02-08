@@ -26,19 +26,16 @@ class SearchDropdown extends React.PureComponent {
   }
 
   handleOutsideClick(e) {
-    console.log('handleOutsideClick');
     // ignore clicks on the component itself
     if (this.node.contains(e.target)) { return; }
     this.hideDropdown();
   }
 
   showDropdown() {
-    console.log('show');
     this.setState({ showDropdown: true });
   }
 
   hideDropdown() {
-    console.log('hide');
     this.setState({ showDropdown: false });
   }
 
