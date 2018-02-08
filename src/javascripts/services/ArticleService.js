@@ -8,7 +8,7 @@ export default class ArticlesService {
    */
   static async search(query) {
     try {
-      const response = await client.request({ url: `${API_BASE_URL}/search.json?query=${query}` });
+      const response = await client.request({ url: `${API_BASE_URL}/help_center/articles/search.json?query=${query}` });
       console.log(response);
       return response.results;
     } catch (error) {
@@ -22,7 +22,7 @@ export default class ArticlesService {
    */
   static async show(id) {
     try {
-      const response = await client.request({ url: `${API_BASE_URL}/articles/${id}.json` });
+      const response = await client.request({ url: `${API_BASE_URL}/help_center/articles/${id}.json` });
       console.log(response);
       return response.article;
     } catch (error) {

@@ -60,13 +60,13 @@ class SearchArticlesContainer extends React.Component {
 
   renderSelectedItem() {
     if (!this.state.selectedItem) { return null; }
-    const { subject, description } = this.state.selectedItem;
+    const { title, snippet } = this.state.selectedItem;
 
     return (
       <div className="search-articles__selected-item c-callout">
         <p className="c-callout__paragraph u-zeta u-semibold">Selected article:</p>
-        <p className="c-callout__title">{subject}</p>
-        <p className="c-callout__paragraph">{description}</p>
+        <p className="c-callout__title">{title}</p>
+        <p className="c-callout__paragraph">{snippet}</p>
         <button class="c-btn c-btn--medium c-btn--pill c-btn--primary u-mt-sm">
           Post As <strong class="u-semibold">Comment</strong>
         </button>
@@ -79,7 +79,7 @@ class SearchArticlesContainer extends React.Component {
       <form className="search-articles c-txt">
         <SearchDropdown
           id="search-articles__dropdown"
-          label="Search for an article:"
+          label="Search for a KB article:"
           value={this.state.query}
           onChange={this.handleQueryChange}
           handleItemClick={this.handleItemClick}

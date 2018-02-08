@@ -54,7 +54,7 @@ class SearchDropdown extends React.PureComponent {
         className="c-menu__item"
         onClick={() => this.props.handleItemClick(result)}
       >
-        {result.subject}
+        {result.title}
       </li>
     ));
   }
