@@ -16,7 +16,7 @@ class SearchArticlesContainer extends React.Component {
 
     this.state = {
       isLoading: false,
-      results: []
+      results: null
     }
 
     this.handleQueryChange = this.handleQueryChange.bind(this);
@@ -44,7 +44,8 @@ class SearchArticlesContainer extends React.Component {
     const query = event.target.value;
     this.setState({
       query,
-      results: []
+      results: null,
+      isLoading: true
     });
     this.searchAsync(query);
   }

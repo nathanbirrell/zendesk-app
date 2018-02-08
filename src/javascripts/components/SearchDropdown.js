@@ -3,10 +3,31 @@ import PropTypes from 'prop-types';
 import Classnames from 'classnames';
 
 import Label from './Label';
-import Spinner from './Spinner';
 
 class SearchDropdown extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showDropdown: false
+    }
+
+    this.toggleShowDropdown = this.toggleShowDropdown.bind(this);
+  }
+
+  toggleShowDropdown(showDropdown = !this.state.showDropdown) {
+    console.log('showdd');
+    this.setState({ showDropdown });
+  }
+
   renderResultItems() {
+    if (this.props.isLoading) {
+      return <li className="c-menu__item">Loading...</li>;
+    }
+    if (!this.props.results.length) {
+      return <li className="c-menu__item">No results :(</li>
+    }
+
     return this.props.results.map((result) => (
       <li
         key={result.id}
@@ -20,12 +41,12 @@ class SearchDropdown extends React.PureComponent {
   }
 
   renderResults() {
-    if (!this.props.results.length) { return null; }
+    if (!this.props.results) { return null; }
 
     const classes = Classnames({
       'c-menu': true,
       'c-menu--down': true,
-      'is-open': true // TODO: hook this up to input active/focus state
+      'is-open': this.state.showDropdown
     });
 
     return (
@@ -33,12 +54,6 @@ class SearchDropdown extends React.PureComponent {
         {this.renderResultItems()}
       </ul>
     );
-  }
-
-  renderLoader() {
-    if (!this.props.isLoading) { return null; }
-
-    return <Spinner />
   }
 
   render() {
@@ -51,11 +66,12 @@ class SearchDropdown extends React.PureComponent {
             type="text"
             value={this.props.value}
             onChange={this.props.onChange}
+            onFocus={this.toggleShowDropdown}
+            onBlur={this.toggleShowDropdown}
           />
         </div>
 
         {this.renderResults()}
-        {this.renderLoader()}
       </fieldset>
     );
   }
@@ -66,13 +82,14 @@ SearchDropdown.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   handleItemClick: PropTypes.func.isRequired,
-  results: PropTypes.array.isRequired,
+  results: PropTypes.array,
   label: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired
 };
 
 SearchDropdown.defaultProps = {
-  value: ''
+  value: '',
+  results: null
 };
 
 export default SearchDropdown;
