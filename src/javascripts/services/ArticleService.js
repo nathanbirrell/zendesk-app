@@ -20,9 +20,13 @@ export default class ArticlesService {
    * Retrieves the properties of an article
    * @returns {Promise}
    */
-  // static async show(id) {
-  //   const response = await client.request({ url: `${API_BASE_URL}/api/v2/${id}.json` });
-  //   console.log(response);
-  //   return response.article;
-  // }
+  static async show(id) {
+    try {
+      const response = await client.request({ url: `${API_BASE_URL}/articles/${id}.json` });
+      console.log(response);
+      return response.article;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
