@@ -20,6 +20,7 @@ class SearchArticlesContainer extends React.Component {
     }
 
     this.handleQueryChange = this.handleQueryChange.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
     this.searchAsync = this.searchAsync.bind(this);
   }
 
@@ -50,6 +51,10 @@ class SearchArticlesContainer extends React.Component {
     this.searchAsync(query);
   }
 
+  handleItemClick(item) {
+    console.log(`clicked item ${item.subject}`, item);
+  }
+
   render() {
     return (
       <form className="search-articles c-txt">
@@ -58,7 +63,7 @@ class SearchArticlesContainer extends React.Component {
           label="Search for an article:"
           value={this.state.query}
           onChange={this.handleQueryChange}
-          handleItemClick={(item) => {console.log(`clicked item ${item.label}`);}}
+          handleItemClick={this.handleItemClick}
           results={this.state.results}
           isLoading={this.state.isLoading}
         />

@@ -33,7 +33,7 @@ class SearchDropdown extends React.PureComponent {
         key={result.id}
         id={result.id}
         className="c-menu__item"
-        onClick={this.props.handleItemClick}
+        onClick={() => this.props.handleItemClick(result)}
       >
         {result.subject}
       </li>
@@ -41,7 +41,7 @@ class SearchDropdown extends React.PureComponent {
   }
 
   renderResults() {
-    if (!this.props.results) { return null; }
+    if (!this.props.results && !this.props.isLoading) { return null; }
 
     const classes = Classnames({
       'c-menu': true,
@@ -68,6 +68,7 @@ class SearchDropdown extends React.PureComponent {
             onChange={this.props.onChange}
             onFocus={this.toggleShowDropdown}
             onBlur={this.toggleShowDropdown}
+            placeholder="Try: 'test' or 'sample'"
           />
         </div>
 

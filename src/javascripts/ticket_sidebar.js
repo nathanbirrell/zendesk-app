@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import View from 'view';
 import Storage from 'storage';
 
+import { client } from './index';
+
 import SearchArticlesContainer from './containers/SearchArticlesContainer';
+
+const IFRAME_HEIGHT = 420;
 
 class TicketSidebar {
   constructor(data) {
@@ -12,7 +16,7 @@ class TicketSidebar {
 
     this.storage = new Storage(this._metadata.installationId);
     this.view = new View({ afterRender: () => {
-      // do stuff
+      client.invoke('resize', { width: '100%', height: IFRAME_HEIGHT });
     }});
 
     this.view.switchTo('main');
