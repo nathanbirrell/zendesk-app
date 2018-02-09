@@ -1,6 +1,6 @@
 // import axios from 'axios';
 
-import { client } from '../index';
+import client from '../zafClient';
 import { API_BASE_URL } from '../config';
 
 export default class UserService {

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import View from 'view';
 import Storage from 'storage';
 
-import { client } from './index';
+import client from './zafClient';;
 
 import ChatService from './services/ChatService';
 import SearchArticlesContainer from './containers/SearchArticlesContainer';
