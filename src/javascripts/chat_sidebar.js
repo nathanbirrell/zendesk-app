@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom';
 import View from 'view';
 import Storage from 'storage';
 
-import client from './zafClient';;
+import client from './zafClient';
 
 import ChatService from './services/ChatService';
 import SearchArticlesContainer from './containers/SearchArticlesContainer';
 
 const IFRAME_HEIGHT = 420;
 
+/**
+ * TODO: potentially extend a Sidebar class that houses shared setup
+ *   and class-level variables between ChatSidebar and TicketSidebar
+ */
 class ChatSidebar {
   constructor(data) {
     this._metadata = data.metadata;
