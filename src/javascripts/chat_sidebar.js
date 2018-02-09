@@ -5,6 +5,7 @@ import Storage from 'storage';
 
 import { client } from './index';
 
+import ChatService from './services/ChatService';
 import SearchArticlesContainer from './containers/SearchArticlesContainer';
 
 const IFRAME_HEIGHT = 490;
@@ -22,7 +23,9 @@ class ChatSidebar {
     this.view.switchTo('main');
 
     ReactDOM.render(
-      <SearchArticlesContainer />,
+      <SearchArticlesContainer
+        CommentService={ChatService}
+      />,
       document.getElementById('app-container')
     );
   }
