@@ -121,7 +121,7 @@ class SearchArticlesContainer extends React.Component {
 }
 
 SearchArticlesContainer.propTypes = {
-  CommentService: PropTypes.object.isRequired
+  CommentService: PropTypes.func.isRequired
 }
 
 export default SearchArticlesContainer;

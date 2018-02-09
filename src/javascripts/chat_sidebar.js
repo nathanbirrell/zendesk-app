@@ -8,7 +8,7 @@ import { client } from './index';
 import ChatService from './services/ChatService';
 import SearchArticlesContainer from './containers/SearchArticlesContainer';
 
-const IFRAME_HEIGHT = 490;
+const IFRAME_HEIGHT = 420;
 
 class ChatSidebar {
   constructor(data) {

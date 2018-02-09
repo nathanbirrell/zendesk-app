@@ -10,12 +10,7 @@ export const client = ZAFClient.init();
 
 // add an event listener to detect once your app is registered with the framework
 client.on('app.registered', (appData) => {
-  console.log('appData', appData);
-
-
-
   UserService.getCurrentUser().then(userData => {
-    console.log(userData);
     // load translations based on the account's current locale
     I18n.loadTranslations(userData.locale);
     // look up app module for the current location
